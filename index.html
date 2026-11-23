@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Matthieu Coleaux</title>
+<meta name="description" content="Matthieu Coleaux, Wagram Conseil. Un diagnostic commercial de cinq jours pour savoir où votre entreprise peut signer, puis, si cela a du sens, le déploiement à vos côtés.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="canonical" href="https://wagramconseil.fr/">
+<meta property="og:title" content="Matthieu Coleaux · Diagnostic commercial">
+<meta property="og:description" content="Un diagnostic commercial pour savoir où votre entreprise peut signer, puis, si vous le souhaitez, un accompagnement dans sa mise en œuvre.">
+<meta property="og:url" content="https://wagramconseil.fr/">
+<meta property="og:type" content="website">
+<style>
+/* Layout : un cabinet qu'on consulte. On prend rendez-vous, on vient pour un diagnostic, le suivi vient ensuite. Colonne éditoriale, bandes alternées. */
+:root{
+  --bg:#F4F6F5; --surface:#FFFFFF; --band:#E7EDEB;
+  --ink:#13232A; --muted:#51636A; --line:#CBD6D3;
+  --accent:#0D625D; --accent-ink:#FFFFFF; --signal:#B86E00; --signal-bg:#FBEFD9;
+  --f-display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body:"Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --s-1:.875rem; --s0:1.0625rem; --s1:1.3rem; --s3:clamp(1.8rem,4vw,2.4rem); --s4:clamp(2.1rem,5vw,3.2rem);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F1A1E; --surface:#16252A; --band:#132126;
+  --ink:#E6EEEC; --muted:#9EB0B4; --line:#2A3D43;
+  --accent:#4FB7AE; --accent-ink:#06201E; --signal:#F0B252; --signal-bg:#33280F; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F1A1E; --surface:#16252A; --band:#132126;
+  --ink:#E6EEEC; --muted:#9EB0B4; --line:#2A3D43;
+  --accent:#4FB7AE; --accent-ink:#06201E; --signal:#F0B252; --signal-bg:#33280F; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:var(--s0);line-height:1.6;margin:0}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+section{padding-block:clamp(3rem,7vw,5.5rem)}
+.band{background:var(--band)}
+h1,h2,h3{font-family:var(--f-display);line-height:1.12;text-wrap:balance;margin:0;font-weight:700}
+h1{font-size:var(--s4);letter-spacing:-.02em}
+h2{font-size:var(--s3);letter-spacing:-.015em}
+h3{font-size:var(--s1)}
+p{margin:0}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--signal);outline-offset:2px}
+.eyebrow{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.lede{font-size:var(--s1);color:var(--muted);max-width:60ch}
+.stack{display:flex;flex-direction:column;gap:1rem}
+.btn{display:inline-block;font-weight:600;font-size:1rem;padding:.8rem 1.3rem;border-radius:6px;text-decoration:none;border:1.5px solid var(--accent);cursor:pointer;font-family:var(--f-body)}
+.btn-primary{background:var(--accent);color:var(--accent-ink)}
+.btn-ghost{background:transparent;color:var(--accent)}
+.btn:hover{filter:brightness(1.07)}
+
+.top{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding-block:1.25rem;flex-wrap:wrap}
+.brand{display:flex;flex-direction:column;line-height:1.2;text-decoration:none;color:var(--ink)}
+.brand b{font-family:var(--f-display);font-size:1.15rem;letter-spacing:-.01em}
+.brand span{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.nav{display:flex;gap:1.25rem;flex-wrap:wrap;font-size:var(--s-1);align-items:center}
+.nav a{color:var(--muted);text-decoration:none}
+.nav a:hover{color:var(--ink)}
+.nav a.rdv{color:var(--accent);font-weight:600}
+
+.hero{padding-block:clamp(2.5rem,6vw,5rem) clamp(3rem,6vw,5rem);display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:clamp(2rem,5vw,4rem);align-items:end}
+.hero .stack{gap:1.4rem}
+.cta-row{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:.4rem}
+.cta-note{font-size:.92rem;color:var(--muted)}
+.cases-sec{border-top:1px solid var(--line);padding-top:clamp(2.5rem,5vw,4rem)}
+.cases{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.5rem 2.5rem;margin-top:2rem}
+.cases div{display:flex;flex-direction:column;gap:.4rem;min-width:0;border-top:2px solid var(--accent);padding-top:.9rem}
+.cases h3{font-size:1.12rem}
+.cases p{color:var(--muted)}
+.deal-cta{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;margin-top:1.4rem;color:var(--muted);font-size:.95rem}
+.faq-sec{border-top:1px solid var(--line)}
+.relay-sec{border-top:1px solid var(--line)}
+.sites{display:flex;flex-direction:column;gap:.6rem;margin-top:.6rem;padding-top:1rem;border-top:1px solid var(--line)}
+.sites ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.5rem}
+.sites li{display:flex;flex-direction:column;font-size:.95rem}
+.sites li span{color:var(--muted)}
+.relay{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(1.5rem,4vw,3.5rem);align-items:start}
+.memo{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:10px;padding:1.3rem;display:flex;flex-direction:column;gap:1rem}
+.memo blockquote{margin:0;font-size:1rem;color:var(--ink)}
+.memo .cta-row{margin-top:0}
+.memo .btn{padding:.6rem 1rem;font-size:.95rem}
+.memo .status{font-size:.9rem;color:var(--muted);min-height:1.2em}
+.cta-note a{color:var(--accent)}
+.faq-wrap{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:clamp(2rem,5vw,4rem);align-items:start}
+.faq{display:flex;flex-direction:column}
+.faq details{border-bottom:1px solid var(--line);padding-block:1rem}
+.faq details:first-child{border-top:1px solid var(--line)}
+.faq summary{cursor:pointer;font-weight:600}
+.faq details p{margin-top:.6rem;color:var(--muted);max-width:65ch}
+@media (max-width:760px){.cases,.faq-wrap{grid-template-columns:1fr}}
+.avail{display:flex;flex-direction:column;gap:.7rem;padding:1.3rem;background:var(--surface);border:1px solid var(--line);border-radius:10px}
+.avail .dot{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--f-mono);font-size:.8rem;color:var(--signal)}
+.avail .dot::before{content:"";width:.55rem;height:.55rem;border-radius:50%;background:var(--signal)}
+.avail p{color:var(--muted);font-size:.95rem}
+
+.facts{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(2rem,5vw,4rem);align-items:start}
+.big{display:flex;flex-direction:column;gap:.5rem;padding:1.3rem 1.4rem;border-left:3px solid var(--accent);background:var(--surface);border-radius:0 10px 10px 0}
+.big .fig{font-family:var(--f-display);font-weight:700;font-size:1.9rem;line-height:1;color:var(--accent);font-variant-numeric:tabular-nums}
+.big p{color:var(--muted)}
+.timeline{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.timeline li{display:grid;grid-template-columns:7.5rem 1fr;gap:1rem;padding-block:.8rem;border-bottom:1px solid var(--line)}
+.timeline li:first-child{border-top:1px solid var(--line)}
+.timeline .y{font-family:var(--f-mono);font-size:.82rem;color:var(--muted);font-variant-numeric:tabular-nums;padding-top:.15rem}
+.timeline b{font-weight:600}
+.timeline span{color:var(--muted)}
+
+.deal{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);background:var(--surface);border:1.5px solid var(--accent);border-radius:12px;overflow:hidden;margin-top:2.5rem}
+.deal-col{padding:clamp(1.3rem,3vw,2rem);display:flex;flex-direction:column;gap:.8rem;min-width:0}
+.deal-get{border-left:1px solid var(--line);background:color-mix(in srgb, var(--accent) 6%, var(--surface))}
+.price{font-family:var(--f-display);font-weight:700;font-size:clamp(2rem,5vw,2.8rem);line-height:1;font-variant-numeric:tabular-nums}
+.price small{display:block;margin-top:.4rem;font-family:var(--f-body);font-weight:400;font-size:.95rem;color:var(--muted)}
+.deal ul{margin:0;padding-left:1.1rem;color:var(--muted);display:flex;flex-direction:column;gap:.3rem}
+.deal ul.gets{list-style:none;padding:0;gap:.6rem;color:var(--ink)}
+.gets li{display:grid;grid-template-columns:2.6rem 1fr;gap:.6rem;align-items:baseline}
+.gets b{font-family:var(--f-display);font-size:1.6rem;color:var(--accent);font-variant-numeric:tabular-nums}
+.payback{margin-top:.3rem;padding:.7rem .9rem;background:var(--signal-bg);color:var(--ink);border-radius:6px;font-size:.95rem}
+
+.diag-detail{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(2rem,5vw,4rem);margin-top:3rem;align-items:start}
+.diag-detail .intro{color:var(--muted)}
+.signals{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.signals li{display:grid;grid-template-columns:8.5rem 1fr;gap:1rem;padding-block:.8rem;border-bottom:1px solid var(--line)}
+.signals li:first-child{border-top:1px solid var(--line)}
+.signals .k{font-family:var(--f-mono);font-size:.8rem;color:var(--signal);padding-top:.15rem}
+.signals span:last-child{color:var(--muted)}
+
+.fiche{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:1.3rem;font-size:.93rem;box-shadow:0 18px 40px -28px rgba(10,40,40,.45)}
+.fiche-head{display:flex;justify-content:space-between;gap:.5rem;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:.7rem;margin-bottom:.8rem;flex-wrap:wrap}
+.fiche-head strong{font-family:var(--f-display);font-size:1.05rem}
+.rank{font-family:var(--f-mono);font-size:.78rem;color:var(--muted)}
+.fiche dl{display:grid;grid-template-columns:auto 1fr;gap:.5rem 1rem;margin:0}
+.fiche dt{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding-top:.2rem}
+.fiche dd{margin:0}
+.chip{display:inline-block;font-family:var(--f-mono);font-size:.76rem;background:var(--signal-bg);color:var(--signal);padding:.12rem .45rem;border-radius:4px}
+.fiche-note{margin-top:.9rem;font-size:.78rem;color:var(--muted);font-style:italic}
+
+.steps{list-style:none;margin:3rem 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.25rem;counter-reset:s}
+.steps li{counter-increment:s;border-top:3px solid var(--accent);padding-top:1rem;display:flex;flex-direction:column;gap:.4rem;min-width:0}
+.steps li::before{content:"Étape " counter(s);font-family:var(--f-mono);font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.steps .when{font-family:var(--f-mono);font-size:.8rem;color:var(--accent)}
+.steps p{color:var(--muted);font-size:.95rem}
+
+.deploy{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:clamp(2rem,5vw,4rem);align-items:start}
+.deploy ul{margin:0;padding-left:1.1rem;color:var(--muted);display:flex;flex-direction:column;gap:.35rem}
+.terms{display:flex;flex-direction:column;gap:.6rem;padding:1.4rem;background:var(--surface);border:1px solid var(--line);border-radius:10px}
+.terms .price{font-size:1.9rem}
+.terms p{color:var(--muted);font-size:.95rem}
+
+.pledges{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem 2.5rem;margin-top:2rem}
+.pledges div{display:flex;flex-direction:column;gap:.3rem;min-width:0}
+.pledges h3{font-size:1.05rem}
+.pledges p{color:var(--muted);font-size:.95rem}
+
+.contact{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(2rem,5vw,4rem)}
+form{display:flex;flex-direction:column;gap:.9rem;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:1.5rem}
+label{font-weight:600;font-size:.92rem;display:flex;flex-direction:column;gap:.3rem}
+input,textarea{font:inherit;font-weight:400;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:.65rem .75rem;width:100%}
+textarea{min-height:7.5rem;resize:vertical}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.status{font-size:.92rem;color:var(--muted);min-height:1.4em}
+.direct{display:flex;flex-direction:column;gap:.6rem;margin-top:1.2rem}
+.direct code{font-family:var(--f-mono);font-size:.92rem;background:var(--surface);border:1px solid var(--line);padding:.3rem .55rem;border-radius:5px;user-select:all;word-break:break-all;align-self:flex-start}
+.hp{position:absolute;left:-9999px}
+
+footer{border-top:1px solid var(--line);padding-block:2rem;font-size:.85rem;color:var(--muted)}
+footer .wrap{display:flex;flex-direction:column;gap:.6rem}
+footer details summary{cursor:pointer;color:var(--ink)}
+footer details p{margin-top:.6rem;max-width:70ch}
+
+@media (max-width:860px){
+  .hero,.facts,.diag-detail,.deploy,.contact,.deal,.relay{grid-template-columns:1fr}
+  .deal-get{border-left:0;border-top:1px solid var(--line)}
+  .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pledges{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:520px){
+  .steps,.pledges,.row2{grid-template-columns:1fr}
+  .signals li,.timeline li{grid-template-columns:1fr;gap:.2rem}
+  .nav a:not(.rdv){display:none}
+}
+</style>
+</head>
+<body>
+
+
+<header class="wrap top">
+  <a class="brand" href="#"><b>Matthieu Coleaux</b><span>Wagram Conseil</span></a>
+  <nav class="nav" aria-label="Sections">
+    <a href="#diagnostic">Le diagnostic</a>
+    <a href="#suivi">Le suivi</a>
+    <a href="#parcours">Parcours</a>
+    <a class="rdv" href="#rendez-vous">Prendre rendez-vous</a>
+  </nav>
+</header>
+
+<main>
+  <div class="wrap hero">
+    <div class="stack">
+      <p class="eyebrow">Diagnostic commercial · pour les dirigeants</p>
+      <h1>Avant d'intensifier la prospection, identifions où votre entreprise peut signer.</h1>
+      <p class="lede">Je suis ingénieur de formation, devenu commercial. Depuis quinze ans, je vends à des directeurs généraux, des directeurs financiers et des DRH. Je propose aux dirigeants un diagnostic commercial : à partir de vos propres données, j'identifie les comptes à privilégier et les interlocuteurs à solliciter. Je peux ensuite, si vous le souhaitez, vous accompagner dans sa mise en œuvre.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#rendez-vous">Demander un premier entretien</a>
+        <a class="btn btn-ghost" href="#diagnostic">Voir ce que contient le diagnostic</a>
+      </div>
+      <p class="cta-note">Trente minutes, sans frais ni engagement, pour vérifier que le diagnostic est adapté à votre situation.</p>
+      <p class="cta-note">Le sujet relève d'une autre personne dans votre entreprise ? <a href="#transmettre">Un résumé à lui transmettre</a> figure plus bas.</p>
+    </div>
+    <aside class="avail" aria-label="Disponibilités">
+      <span class="dot">Ma façon de travailler</span>
+      <p>Je suis personnellement chaque projet, alors je préfère en prendre peu et bien les suivre. Il peut donc arriver qu'un démarrage immédiat ne soit pas possible.</p>
+      <p>Je lis chaque demande et j'y réponds moi-même. Si je ne suis pas l'interlocuteur le plus adapté, je vous le dis et vous oriente, dans la mesure du possible.</p>
+    </aside>
+  </div>
+
+  <section class="cases-sec">
+    <div class="wrap">
+      <div class="stack">
+        <p class="eyebrow">Quand le diagnostic est utile</p>
+        <h2>Quatre situations que je rencontre souvent</h2>
+      </div>
+      <div class="cases">
+        <div><h3>Votre chiffre d'affaires repose sur quelques clients</h3><p>Le départ d'un seul d'entre eux fragiliserait l'année. Il devient nécessaire d'ouvrir de nouveaux comptes, sans savoir lesquels privilégier.</p></div>
+        <div><h3>Vos équipes prospectent, les résultats tardent</h3><p>L'effort est réel, mais il se disperse sur des cibles qui n'ont aucune raison d'acheter maintenant.</p></div>
+        <div><h3>Votre CRM contient des comptes que personne ne rappelle</h3><p>Anciens clients, propositions restées sans suite, contacts partis ailleurs : une part de votre croissance s'y trouve déjà.</p></div>
+        <div><h3>Vous vendez à des directions générales, financières ou RH</h3><p>Ce sont les interlocuteurs auxquels je vends depuis quinze ans. Je connais leurs critères et leurs cycles de décision.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="diagnostic">
+    <div class="wrap">
+      <div class="stack">
+        <p class="eyebrow">La première consultation</p>
+        <h2>Le diagnostic, en cinq jours</h2>
+        <p class="lede">Le diagnostic répond à une question précise : où votre entreprise peut-elle signer le plus rapidement l'an prochain, et par quels comptes commencer ? La réponse se trouve, pour l'essentiel, dans les informations dont vous disposez déjà.</p>
+      </div>
+
+      <div class="deal" aria-label="Le diagnostic en résumé">
+        <div class="deal-col">
+          <p class="eyebrow">Votre investissement</p>
+          <p class="price">5 000 € HT<small>Forfait fixe</small></p>
+          <ul>
+            <li>Une demi-journée de votre équipe au total</li>
+            <li>Un mois entre le premier entretien et la décision</li>
+            <li>Facturation à la restitution, sans acompte</li>
+            <li>Aucun engagement au-delà du diagnostic</li>
+          </ul>
+        </div>
+        <div class="deal-col deal-get">
+          <p class="eyebrow">Ce que vous obtenez</p>
+          <ul class="gets">
+            <li><b>20</b><span>comptes classés, avec l'interlocuteur et la raison de l'appeler maintenant</span></li>
+            <li><b>10</b><span>messages d'approche prêts à envoyer</span></li>
+            <li><b>3</b><span>axes commerciaux prioritaires, chiffrés sur votre CRM</span></li>
+            <li><b>1</b><span>plan de déploiement : objectifs, étapes, charge et budget</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="deal-cta"><a class="btn btn-primary" href="#rendez-vous">Demander un premier entretien</a><span>Trente minutes, sans frais ni engagement.</span></p>
+
+      <div class="diag-detail">
+        <div class="stack">
+          <h3>Ce que j'analyse</h3>
+          <p class="intro">Votre CRM renseigne sur les entreprises qui vous connaissent déjà : clients actifs, comptes inactifs, affaires perdues, propositions envoyées. Les signaux publics révèlent celles qui ont, ce trimestre, une raison de vous solliciter.</p>
+          <ul class="signals">
+            <li><span class="k">Nomination</span><span>Un nouveau directeur général, directeur financier ou DRH revoit ses prestataires.</span></li>
+            <li><span class="k">Croissance</span><span>Une levée de fonds, un nouveau site ou une vague de recrutements annonce des budgets.</span></li>
+            <li><span class="k">Projet annoncé</span><span>Un appel d'offres, un plan de transformation ou d'investissement est rendu public.</span></li>
+            <li><span class="k">Réorganisation</span><span>Une fusion, une cession ou un changement d'équipe redistribue les décisions.</span></li>
+            <li><span class="k">Anciens contacts</span><span>Un client satisfait change d'entreprise et vous ouvre un nouveau compte.</span></li>
+          </ul>
+        </div>
+        <aside class="fiche" aria-label="Exemple de fiche compte livrée">
+          <div class="fiche-head">
+            <strong>ETI industrielle, 1 400 salariés</strong>
+            <span class="rank">compte n° 3 / 20</span>
+          </div>
+          <dl>
+            <dt>Historique</dt>
+            <dd>Cliente en 2023 (une première commande), plus rien depuis 19 mois</dd>
+            <dt>Signal</dt>
+            <dd><span class="chip">Nouveau directeur général</span> nommé il y a trois semaines</dd>
+            <dt>Interlocuteurs</dt>
+            <dd>Le nouveau DG, et la DAF, qui avait signé la première commande</dd>
+            <dt>Pourquoi maintenant</dt>
+            <dd>Un dirigeant qui arrive revoit ses prestataires et fixe ses priorités dans ses cent premiers jours, budget 2027 compris</dd>
+            <dt>Message</dt>
+            <dd>Rédigé, prêt à envoyer</dd>
+          </dl>
+          <p class="fiche-note">Exemple fictif du format livré, pour un compte de la liste.</p>
+        </aside>
+      </div>
+
+      <ol class="steps">
+        <li><span class="when">Semaine 1</span><h3>Cadrage</h3><p>Entretien de deux heures, ouverture des accès, liste des comptes à exclure.</p></li>
+        <li><span class="when">Semaines 2 et 3</span><h3>Analyse</h3><p>CRM, propositions, retours clients, signaux publics.</p></li>
+        <li><span class="when">Semaine 3</span><h3>Restitution</h3><p>Une heure et demie pour vous présenter les livrables et le plan.</p></li>
+        <li><span class="when">Semaine 5</span><h3>Décision</h3><p>Poursuite de l'accompagnement, déploiement en interne ou fin de la mission. Les livrables vous restent acquis.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="suivi">
+    <div class="wrap deploy">
+      <div class="stack">
+        <p class="eyebrow">Le suivi, si vous le souhaitez</p>
+        <h2>Mettre le plan en œuvre avec vous</h2>
+        <p class="lede">Une fois les priorités établies, je peux vous accompagner dans leur mise en œuvre, aux côtés de votre direction, jusqu'à la signature des premiers contrats.</p>
+        <ul>
+          <li>Prospection des comptes prioritaires et premiers rendez-vous</li>
+          <li>Mise au point de l'offre, des propositions et des prix</li>
+          <li>Recrutement et montée en charge de l'équipe commerciale</li>
+          <li>Point mensuel sur les affaires conclues, les obstacles rencontrés et les actions à abandonner</li>
+        </ul>
+      </div>
+      <aside class="terms">
+        <p class="eyebrow">Conditions</p>
+        <p class="price">1 000 € HT / jour</p>
+        <p>Ce tarif constitue une base. Le rythme d'intervention et la répartition entre fixe et variable sur le chiffre d'affaires signé se décident ensemble après le diagnostic, à partir de vos chiffres.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="band" id="parcours">
+    <div class="wrap facts">
+      <div class="stack">
+        <p class="eyebrow">Mon parcours</p>
+        <h2>Matthieu Coleaux</h2>
+        <p>Ingénieur reconverti en commercial. J'ai vendu du conseil, du logiciel et des services, à de grands groupes comme à des PME. Cette expérience m'a appris comment se prennent les décisions d'achat au sein d'une direction et ce qu'exige une vente complexe.</p>
+        <div class="big" id="preuve">
+          <span class="fig">0 → 1,5 M€</span>
+          <p>Plus récemment, j'ai créé une business unit au sein d'un cabinet de conseil et l'ai portée à 1,5 million d'euros de chiffre d'affaires en un an, avec l'équipe que j'ai recrutée. C'est ce savoir-faire que je mets à votre disposition après le diagnostic.</p>
+        </div>
+        <p><a href="https://www.linkedin.com/in/matthieucole/" rel="noopener">Mon profil LinkedIn</a></p>
+        <div class="sites">
+          <p class="eyebrow">Sites que j'ai conçus</p>
+          <ul>
+            <li><a href="https://vote.wagramconseil.fr/" rel="noopener">Ce que coûte mon vote</a><span>Un simulateur de l'effet des programmes politiques sur les finances d'un foyer.</span></li>
+            <li><a href="https://jeux.wagramconseil.fr/" rel="noopener">Jeux Express</a><span>Deux jeux pour s'entraîner au calcul mental.</span></li>
+          </ul>
+        </div>
+      </div>
+      <ul class="timeline">
+        <li><span class="y">2025 →</span><div><b>Création d'une business unit, cabinet de conseil</b><br><span>De zéro à 1,5 M€ de chiffre d'affaires en un an</span></div></li>
+        <li><span class="y">2024 →</span><div><b>Fondateur, Wagram Conseil</b><br><span>Conseil en développement commercial</span></div></li>
+        <li><span class="y">2024 – 2025</span><div><b>Account Director, Aon</b><br><span>Grands comptes</span></div></li>
+        <li><span class="y">2018 – 2023</span><div><b>Client Partner, Talogy</b><br><span>Développement de comptes</span></div></li>
+        <li><span class="y">2013 – 2018</span><div><b>Head of Software Development, CleverConnect</b><br><span>Meteojob, Visiotalent, HRmatch</span></div></li>
+        <li><span class="y">2008 – 2013</span><div><b>Développement commercial, Leyton puis Spartes</b><br><span>Vente de conseil aux directions financières et générales</span></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="stack">
+        <p class="eyebrow">Vos données</p>
+        <h2>Mes engagements</h2>
+      </div>
+      <div class="pledges">
+        <div><h3>Un accord signé d'abord</h3><p>Confidentialité et traitement des données, signés avant tout accès au CRM.</p></div>
+        <div><h3>Un seul usage</h3><p>Vos données servent à votre dossier et à aucun autre client.</p></div>
+        <div><h3>Aucune conservation</h3><p>Exports et copies sont supprimés en fin de mission, ou restitués.</p></div>
+        <div><h3>Pas d'accès aux boîtes mail</h3><p>Vos commerciaux transmettent eux-mêmes les propositions utiles.</p></div>
+        <div><h3>Des sources publiques</h3><p>Les cibles nouvelles reposent sur des informations publiques.</p></div>
+        <div><h3>Des outils présentés</h3><p>Je vous décris les outils utilisés avant de m'en servir.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq-sec" id="questions">
+    <div class="wrap faq-wrap">
+      <div class="stack">
+        <p class="eyebrow">Questions fréquentes</p>
+        <h2>Avant de décider</h2>
+      </div>
+      <div class="faq">
+        <details><summary>Notre CRM est incomplet. Le diagnostic reste-t-il possible ?</summary><p>Oui, c'est le cas le plus fréquent. Un export, même imparfait, complété par vos propositions commerciales et un entretien avec vos équipes, suffit. Le diagnostic précise aussi les quelques informations à fiabiliser en priorité.</p></details>
+        <details><summary>Pourquoi ne pas confier ce travail à notre direction commerciale ?</summary><p>Elle y est associée dès le cadrage, et les livrables lui sont destinés. Un regard extérieur apporte un temps consacré exclusivement au sujet et une lecture sans a priori des comptes perdus ou délaissés.</p></details>
+        <details><summary>Combien de temps cela demande-t-il à nos équipes ?</summary><p>Environ une demi-journée au total : deux heures de cadrage avec la direction, puis trente minutes avec chaque commercial.</p></details>
+        <details><summary>Sommes-nous tenus de poursuivre avec vous ensuite ?</summary><p>Non. Les livrables vous restent acquis et sont conçus pour être utilisés par vos équipes, avec ou sans moi.</p></details>
+        <details><summary>Quand le diagnostic peut-il commencer ?</summary><p>Cela dépend des missions en cours. Je vous indique une date dès notre premier entretien.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="relay-sec" id="transmettre">
+    <div class="wrap relay">
+      <div class="stack">
+        <p class="eyebrow">Si nous nous connaissons déjà</p>
+        <h2>Ce diagnostic serait peut-être utile à quelqu'un d'autre que vous</h2>
+        <p class="lede">Si vous arrivez ici depuis LinkedIn, nous avons probablement déjà travaillé ensemble ou échangé. Le développement commercial n'est peut-être pas votre sujet, mais vous savez sans doute qui s'en préoccupe dans votre entreprise : la direction générale, la direction commerciale, un associé.</p>
+        <p>Si la démarche vous semble pertinente pour eux, le résumé proposé ici peut leur être transmis tel quel. Vous pouvez aussi m'écrire directement : je vous dirai en toute franchise si le diagnostic a du sens dans votre contexte, avant que vous n'en parliez à qui que ce soit.</p>
+      </div>
+      <div class="memo" aria-label="Résumé à transmettre">
+        <p class="eyebrow">Résumé à transmettre</p>
+        <blockquote id="memo-text">Matthieu Coleaux, que je connais, propose un diagnostic commercial aux dirigeants. En cinq jours, à partir de notre CRM et d'informations publiques, il remet vingt comptes à privilégier avec l'interlocuteur à solliciter, dix messages d'approche prêts à envoyer, trois axes prioritaires et un plan de déploiement. Le forfait est de 5&nbsp;000&nbsp;€&nbsp;HT, facturé à la restitution, sans engagement au-delà. Le premier entretien, de trente minutes, est sans frais. Le détail : https://wagramconseil.fr</blockquote>
+        <div class="cta-row">
+          <button class="btn btn-primary" type="button" id="memo-copy">Copier ce texte</button>
+          <a class="btn btn-ghost" id="memo-mail" href="#">Transmettre par mail</a>
+        </div>
+        <p class="status" id="memo-status" role="status"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="rendez-vous">
+    <div class="wrap contact">
+      <div class="stack">
+        <p class="eyebrow">Rendez-vous</p>
+        <h2>Solliciter un premier entretien</h2>
+        <p><b>Trente minutes, sans frais ni engagement.</b></p>
+        <p class="lede">Présentez-moi en quelques lignes votre activité et vos objectifs de développement. Je vous réponds sous deux jours ouvrés en vous indiquant mes disponibilités ou, le cas échéant, un interlocuteur plus approprié.</p>
+        <div class="direct">
+          <span class="eyebrow">Ou directement</span>
+          <code id="mail">matthieu@wagramconseil.fr</code>
+          <a href="https://www.linkedin.com/in/matthieucole/" rel="noopener">M'écrire sur LinkedIn</a>
+        </div>
+      </div>
+      <form id="contact-form" novalidate>
+        <div class="row2">
+          <label for="f-name">Nom<input id="f-name" name="name" autocomplete="name" required></label>
+          <label for="f-company">Entreprise<input id="f-company" name="company" autocomplete="organization"></label>
+        </div>
+        <label for="f-email">Adresse mail<input id="f-email" name="email" type="email" autocomplete="email" required></label>
+        <label for="f-msg">Votre entreprise et votre objectif<textarea id="f-msg" name="message" required placeholder="Votre activité, vos clients, et vos ambitions pour l'année à venir."></textarea></label>
+        <input class="hp" type="checkbox" name="botcheck" id="f-bot" tabindex="-1" aria-hidden="true">
+        <button class="btn btn-primary" type="submit">Demander un rendez-vous</button>
+        <p class="status" id="f-status" role="status"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 Wagram Conseil, marque de WG Conseil</p>
+    <details>
+      <summary>Mentions légales</summary>
+      <p>Éditeur : WG Conseil, société par actions simplifiée au capital de 1 000 €, SIREN 993 059 294. Siège social : Paris 17e. TVA intracommunautaire FR16 993 059 294. Directeur de la publication : Matthieu Coleaux, président. Contact : matthieu@wagramconseil.fr.</p>
+      <p>Hébergement : GitHub, Inc. (GitHub Pages), 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis. Les messages envoyés par le formulaire sont acheminés par Web3Forms et servent uniquement à vous répondre ; ils sont supprimés au bout de trois ans sans échange.</p>
+    </details>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var t = document.getElementById('memo-text').textContent.trim();
+  var st = document.getElementById('memo-status');
+  document.getElementById('memo-mail').href = 'mailto:?subject=' + encodeURIComponent('Un diagnostic commercial qui pourrait nous être utile') + '&body=' + encodeURIComponent(t);
+  document.getElementById('memo-copy').addEventListener('click', function(){
+    function ok(){ st.textContent = 'Texte copié.'; }
+    function ko(){ st.textContent = 'La copie automatique est indisponible : sélectionnez le texte ci-dessus.'; }
+    if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(t).then(ok, ko); } else { ko(); }
+  });
+})();
+(function(){
+  var form = document.getElementById('contact-form');
+  var status = document.getElementById('f-status');
+  var KEY = '77a148e4-eed9-4a7d-8f58-e513b927e632';
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = form.name.value.trim(), email = form.email.value.trim(), msg = form.message.value.trim();
+    if(!name || !email || !msg){ status.textContent = 'Indiquez votre nom, votre adresse mail et votre message.'; return; }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ status.textContent = "L'adresse mail semble incomplète."; return; }
+    if(form.botcheck.checked) return;
+    status.textContent = 'Envoi en cours…';
+    fetch('https://api.web3forms.com/submit', {
+      method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body: JSON.stringify({access_key:KEY, subject:'Wagram Conseil : demande de rendez-vous', from_name:'wagramconseil.fr', name:name, entreprise:form.company.value.trim(), email:email, message:msg})
+    }).then(function(r){return r.json()}).then(function(d){
+      if(d && d.success){ form.reset(); status.textContent = 'Demande envoyée. Je vous réponds sous deux jours ouvrés.'; }
+      else throw new Error();
+    }).catch(function(){
+      status.textContent = "L'envoi n'a pas abouti. Écrivez-moi à matthieu@wagramconseil.fr.";
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
